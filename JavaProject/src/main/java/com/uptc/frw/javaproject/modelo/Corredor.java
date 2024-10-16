@@ -24,6 +24,9 @@ public class Corredor {
     @OneToMany(mappedBy = "corredor")
     private List<Podio> podios;
 
+    @OneToMany(mappedBy = "corredor")
+    private List<HistorialEquipo> historialCorredor;
+
     public Corredor() {
     }
 
@@ -67,6 +70,7 @@ public class Corredor {
         this.country = country;
     }
 
+
     public List<Podio> getPodios() {
         return podios;
     }
@@ -74,6 +78,11 @@ public class Corredor {
     public void setPodios(List<Podio> podios) {
         this.podios = podios;
     }
+
+    public List<HistorialEquipo> getHistorialCorredor() { return historialCorredor; }
+
+    public void setHistorialCorredor(List<HistorialEquipo> historialCorredor) { this.historialCorredor = historialCorredor; }
+
 
     @Override
     public String toString() {

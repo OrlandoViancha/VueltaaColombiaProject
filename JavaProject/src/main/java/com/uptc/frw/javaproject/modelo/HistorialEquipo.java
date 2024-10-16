@@ -1,11 +1,26 @@
 package com.uptc.frw.javaproject.modelo;
 
-public class HistorialEquipo {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "HISTORIAL_EQUIPOS")
+public class HistorialEquipo {
+    @Id
+    @Column(name = "ID_HISTORIAL")
     private long id;
+    @Column(name = "ID_EQUIPO",insertable = false, updatable = false)
     private long idEquipo;
+    @Column(name = "ID_CORREDOR",insertable = false, updatable = false)
     private long idCorredor;
+    @Column(name = "ANIO_VINCULACION")
     private int anioVinculacion;
+    @ManyToOne
+    @JoinColumn(name = "ID_EQUIPO")
+    private Equipo equipo;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CORREDOR")
+    private Corredor corredor;
 
     public HistorialEquipo() {}
 
@@ -16,37 +31,29 @@ public class HistorialEquipo {
         this.anioVinculacion = anioVinculacion;
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 
-    public long getIdEquipo() {
-        return idEquipo;
-    }
+    public long getIdEquipo() { return idEquipo; }
 
-    public void setIdEquipo(long idEquipo) {
-        this.idEquipo = idEquipo;
-    }
+    public void setIdEquipo(long idEquipo) { this.idEquipo = idEquipo; }
 
-    public long getIdCorredor() {
-        return idCorredor;
-    }
+    public long getIdCorredor() { return idCorredor; }
 
-    public void setIdCorredor(long idCorredor) {
-        this.idCorredor = idCorredor;
-    }
+    public void setIdCorredor(long idCorredor) { this.idCorredor = idCorredor; }
 
-    public int getAnioVinculacion() {
-        return anioVinculacion;
-    }
+    public int getAnioVinculacion() { return anioVinculacion; }
 
-    public void setAnioVinculacion(int anioVinculacion) {
-        this.anioVinculacion = anioVinculacion;
-    }
+    public void setAnioVinculacion(int anioVinculacion) { this.anioVinculacion = anioVinculacion; }
+
+    public Equipo getEquipo() { return equipo; }
+
+    public void setEquipo(Equipo equipo) { this.equipo = equipo; }
+
+    public Corredor getCorredor() { return corredor; }
+
+    public void setCorredor(Corredor corredor) { this.corredor = corredor; }
 
     @Override
     public String toString() {
