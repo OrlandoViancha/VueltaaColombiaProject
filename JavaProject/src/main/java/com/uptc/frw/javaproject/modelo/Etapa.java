@@ -1,9 +1,8 @@
 package com.uptc.frw.javaproject.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "ETAPAS")
@@ -12,7 +11,7 @@ public class Etapa {
     @Id
     @Column(name = "ID_ETAPA")
     private long id;
-    @Column(name = "ID_EDICION")
+    @Column(name = "ID_EDICION", insertable = false, updatable = false)
     private long idEdicion;
     @Column(name = "ORIGEN")
     private String origen;
@@ -22,6 +21,13 @@ public class Etapa {
     private double longitud;
     @Column(name = "TIPO_ETAPA")
     private String tipoEtapa;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_EDICION")
+    private Edicion edicion;
+
+    @OneToMany(mappedBy = "etapa")
+    private List<Etapa> etapas;
 
     public Etapa() {
     }
@@ -72,6 +78,22 @@ public class Etapa {
 
     public void setTipoEtapa(String tipoEtapa) {
         this.tipoEtapa = tipoEtapa;
+    }
+
+    public Edicion getEdicion() {
+        return edicion;
+    }
+
+    public void setEdicion(Edicion edicion) {
+        this.edicion = edicion;
+    }
+
+    public List<Etapa> getEtapas() {
+        return etapas;
+    }
+
+    public void setEtapas(List<Etapa> etapas) {
+        this.etapas = etapas;
     }
 
     @Override

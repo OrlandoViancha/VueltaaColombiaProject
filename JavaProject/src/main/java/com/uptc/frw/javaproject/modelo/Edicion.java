@@ -1,11 +1,9 @@
 package com.uptc.frw.javaproject.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "EDICIONES")
@@ -18,6 +16,9 @@ public class Edicion {
     private Date fechaInicio;
     @Column(name = "FECHA_FIN")
     private Date fechaFin;
+
+    @OneToMany(mappedBy = "edicion")
+    private List<Etapa> etapas;
 
     public Edicion() {
     }
@@ -44,6 +45,14 @@ public class Edicion {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public List<Etapa> getEtapas() {
+        return etapas;
+    }
+
+    public void setEtapas(List<Etapa> etapas) {
+        this.etapas = etapas;
     }
 
     @Override

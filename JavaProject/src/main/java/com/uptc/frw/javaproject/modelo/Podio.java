@@ -1,9 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 
@@ -14,14 +11,22 @@ public class Podio {
     @Id
     @Column(name = "ID_PODIO")
     private long id;
-    @Column(name = "ID_ETAPA")
+    @Column(name = "ID_ETAPA", insertable = false, updatable = false)
     private long idEtapa;
-    @Column(name = "ID_CORREDOR")
+    @Column(name = "ID_CORREDOR", insertable = false, updatable = false)
     private long idCorredor;
     @Column(name = "POSICION")
     private long posicion;
     @Column(name = "TIEMPO")
     private Timestamp tiempo;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_ETAPA")
+    private Etapa etapa;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CORREDOR")
+    private Corredor corredor;
 
     public Podio() {
     }
@@ -64,6 +69,22 @@ public class Podio {
 
     public void setTiempo(Timestamp tiempo) {
         this.tiempo = tiempo;
+    }
+
+    public Etapa getEtapa() {
+        return etapa;
+    }
+
+    public void setEtapa(Etapa etapa) {
+        this.etapa = etapa;
+    }
+
+    public Corredor getCorredor() {
+        return corredor;
+    }
+
+    public void setCorredor(Corredor corredor) {
+        this.corredor = corredor;
     }
 
     @Override

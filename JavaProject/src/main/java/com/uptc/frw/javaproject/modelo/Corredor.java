@@ -1,11 +1,9 @@
 package com.uptc.frw.javaproject.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "CORREDORES")
@@ -22,6 +20,9 @@ public class Corredor {
     private Date birthDate;
     @Column(name = "ID_PAIS")
     private long country;
+
+    @OneToMany(mappedBy = "corredor")
+    private List<Podio> podios;
 
     public Corredor() {
     }
@@ -64,6 +65,14 @@ public class Corredor {
 
     public void setCountry(long country) {
         this.country = country;
+    }
+
+    public List<Podio> getPodios() {
+        return podios;
+    }
+
+    public void setPodios(List<Podio> podios) {
+        this.podios = podios;
     }
 
     @Override
