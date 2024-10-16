@@ -27,7 +27,7 @@ public class Etapa {
     private Edicion edicion;
 
     @OneToMany(mappedBy = "etapa")
-    private List<Etapa> etapas;
+    private List<Podio> podios;
 
     public Etapa() {
     }
@@ -88,12 +88,12 @@ public class Etapa {
         this.edicion = edicion;
     }
 
-    public List<Etapa> getEtapas() {
-        return etapas;
+    public List<Podio> getPodios() {
+        return podios;
     }
 
-    public void setEtapas(List<Etapa> etapas) {
-        this.etapas = etapas;
+    public void setPodios(List<Podio> podios) {
+        this.podios = podios;
     }
 
     @Override
