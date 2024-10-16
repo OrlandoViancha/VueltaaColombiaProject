@@ -1,5 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -17,6 +18,7 @@ public class Edicion {
     @Column(name = "FECHA_FIN")
     private Date fechaFin;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "edicion")
     private List<Etapa> etapas;
 
