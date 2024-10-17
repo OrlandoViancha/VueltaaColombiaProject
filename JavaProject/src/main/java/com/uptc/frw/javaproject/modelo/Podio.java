@@ -1,5 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -20,10 +21,12 @@ public class Podio {
     @Column(name = "TIEMPO")
     private Timestamp tiempo;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_ETAPA")
     private Etapa etapa;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_CORREDOR")
     private Corredor corredor;
