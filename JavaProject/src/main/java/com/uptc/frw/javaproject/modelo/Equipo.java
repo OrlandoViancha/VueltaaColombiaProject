@@ -1,5 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import javax.naming.Name;
@@ -12,11 +13,10 @@ public class Equipo {
     @Id
     @Column(name = "ID_EQUIPO")
     private long id;
-    @Column(name = "ID_PATROCINADOR")
-    private long idPatrocinador;
     @Column(name = "NOMBRE_EQUIPO")
     private String nombre;
     @Column(name = "FECHA_FUNDACION")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date fechaFundacion;
 
     @OneToMany(mappedBy = "equipo")
@@ -27,9 +27,8 @@ public class Equipo {
     
     public Equipo() {}
 
-    public Equipo(long id, long idPatrocinador, String nombre, Date fechaFundacion) {
+    public Equipo(long id, String nombre, Date fechaFundacion) {
         this.id = id;
-        this.idPatrocinador = idPatrocinador;
         this.nombre = nombre;
         this.fechaFundacion = fechaFundacion;
     }
@@ -37,10 +36,6 @@ public class Equipo {
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
-
-    public long getIdPatrocinador() { return idPatrocinador; }
-
-    public void setIdPatrocinador(long idPatrocinador) { this.idPatrocinador = idPatrocinador; }
 
     public String getNombre() { return nombre; }
 
@@ -54,7 +49,6 @@ public class Equipo {
     public String toString() {
         return "Equipo{" +
                 "id=" + id +
-                ", idPatrocinador=" + idPatrocinador +
                 ", nombre='" + nombre + '\'' +
                 ", fechaFundacion=" + fechaFundacion +
                 '}';
