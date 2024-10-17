@@ -17,25 +17,25 @@ public class EdicionServicio {
         return edicionRepo.findAll();
     }
 
-    public Edicion getEdicion(long id){
+    public Edicion buscar(long id){
         return edicionRepo.findById(id).orElse(null);
     }
 
-    public Edicion saveEdicion(Edicion edicion){
+    public Edicion guardar(Edicion edicion){
         return edicionRepo.save(edicion);
     }
 
-    public Edicion updateEdicion(long id, Edicion edicion){
-        Edicion edicionAux = getEdicion(id);
-        if(edicionAux != null){
-            edicion.setFechaInicio(edicionAux.getFechaInicio());
-            edicion.setFechaFin(edicionAux.getFechaFin());
-            return saveEdicion(edicionAux);
+    public Edicion actualizar(long id, Edicion edicion){
+        Edicion edicionActual = buscar(id);
+        if(edicionActual != null){
+            edicionActual.setFechaInicio(edicion.getFechaInicio());
+            edicionActual.setFechaFin(edicion.getFechaFin());
+            return guardar(edicionActual);
         }
         throw new RuntimeException("No se encontro el edicion");
     }
 
-    public void deleteEdicion(long id){
+    public void borrar(long id){
         edicionRepo.deleteById(id);
     }
 

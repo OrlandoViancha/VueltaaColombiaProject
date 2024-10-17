@@ -1,5 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,10 +23,12 @@ public class Etapa {
     @Column(name = "TIPO_ETAPA")
     private String tipoEtapa;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_EDICION")
     private Edicion edicion;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "etapa")
     private List<Podio> etapas;
 

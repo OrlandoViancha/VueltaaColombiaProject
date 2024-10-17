@@ -21,22 +21,22 @@ public class EdicionControlador {
 
     @GetMapping("{id}")
     public Edicion obtenerEdicionPorId(@PathVariable long id){
-        return edicionServicio.getEdicion(id);
+        return edicionServicio.buscar(id);
     }
 
     @PostMapping
     public Edicion crearEdicion(@RequestBody Edicion edicion){
-        return edicionServicio.saveEdicion(edicion);
+        return edicionServicio.guardar(edicion);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarEdicionPorId(@PathVariable long id){
-        edicionServicio.deleteEdicion(id);
+        edicionServicio.borrar(id);
     }
 
     @PutMapping
     public Edicion modificarEdicion(@RequestParam long id,@RequestBody Edicion edicion){
-        return edicionServicio.updateEdicion(id, edicion);
+        return edicionServicio.actualizar(id, edicion);
     }
 
 }
