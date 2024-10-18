@@ -20,18 +20,16 @@ public class Corredor {
     @Column(name = "FECHA_NACIMIENTO_CORREDOR")
     private Date birthDate;
     @Column(name = "ID_PAIS", insertable = false, updatable = false)
-    private long country;
-
+    private long countryId;
+    @JsonIgnore
     @OneToMany(mappedBy = "corredor")
     private List<Podio> podios;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "corredor")
     private List<HistorialEquipo> historialCorredor;
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_PAIS")
-    private Pais pais;
+    private Pais country;
 
     public Corredor() {
     }
@@ -68,12 +66,12 @@ public class Corredor {
         this.birthDate = birthDate;
     }
 
-    public long getCountry() {
-        return country;
+    public long getCountryId() {
+        return countryId;
     }
 
-    public void setCountry(long country) {
-        this.country = country;
+    public void setCountryId(long country) {
+        this.countryId = country;
     }
 
 
@@ -89,12 +87,12 @@ public class Corredor {
 
     public void setHistorialCorredor(List<HistorialEquipo> historialCorredor) { this.historialCorredor = historialCorredor; }
 
-    public Pais getPais() {
-        return pais;
+    public Pais getCountry() {
+        return country;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setCountry(Pais pais) {
+        this.country = pais;
     }
 
     @Override
@@ -104,7 +102,7 @@ public class Corredor {
                 ", name='" + name + '\'' +
                 ", lastNames='" + lastNames + '\'' +
                 ", birthDate=" + birthDate +
-                ", country=" + country +
+                ", country=" + countryId +
                 '}';
     }
 }

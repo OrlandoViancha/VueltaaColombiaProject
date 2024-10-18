@@ -15,7 +15,7 @@ public class Pais {
     @Column(name = "NOMBRE_PAIS")
     private String name;
     @JsonIgnore
-    @OneToMany(mappedBy = "pais")
+    @OneToMany(mappedBy = "country")
     private List<Corredor> corredores;
 
     public Pais() {
