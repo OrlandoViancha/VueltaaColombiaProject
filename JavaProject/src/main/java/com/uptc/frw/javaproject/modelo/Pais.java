@@ -1,9 +1,9 @@
 package com.uptc.frw.javaproject.modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "PAISES")
@@ -14,6 +14,9 @@ public class Pais {
     private long id;
     @Column(name = "NOMBRE_PAIS")
     private String name;
+    @JsonIgnore
+    @OneToMany(mappedBy = "country")
+    private List<Corredor> corredores;
 
     public Pais() {
     }
@@ -32,6 +35,14 @@ public class Pais {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Corredor> getCorredores() {
+        return corredores;
+    }
+
+    public void setCorredores(List<Corredor> corredores) {
+        this.corredores = corredores;
     }
 
     @Override

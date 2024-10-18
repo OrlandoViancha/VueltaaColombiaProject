@@ -22,6 +22,10 @@ public class Edicion {
     @OneToMany(mappedBy = "edicion")
     private List<Etapa> etapas;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "edicion")
+    private List<EdicionEquipo> edicionEquipos;
+
     public Edicion() {
     }
 
@@ -55,6 +59,14 @@ public class Edicion {
 
     public void setEtapas(List<Etapa> etapas) {
         this.etapas = etapas;
+    }
+
+    public List<EdicionEquipo> getEdicionEquipos() {
+        return edicionEquipos;
+    }
+
+    public void setEdicionEquipos(List<EdicionEquipo> edicionEquipos) {
+        this.edicionEquipos = edicionEquipos;
     }
 
     @Override

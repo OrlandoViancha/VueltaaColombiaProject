@@ -1,5 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,14 +19,17 @@ public class Corredor {
     private String lastNames;
     @Column(name = "FECHA_NACIMIENTO_CORREDOR")
     private Date birthDate;
-    @Column(name = "ID_PAIS")
-    private long country;
-
+    @Column(name = "ID_PAIS", insertable = false, updatable = false)
+    private long countryId;
+    @JsonIgnore
     @OneToMany(mappedBy = "corredor")
     private List<Podio> podios;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "corredor")
     private List<HistorialEquipo> historialCorredor;
+    @ManyToOne
+    @JoinColumn(name = "ID_PAIS")
+    private Pais country;
 
     public Corredor() {
     }
@@ -62,12 +66,12 @@ public class Corredor {
         this.birthDate = birthDate;
     }
 
-    public long getCountry() {
-        return country;
+    public long getCountryId() {
+        return countryId;
     }
 
-    public void setCountry(long country) {
-        this.country = country;
+    public void setCountryId(long country) {
+        this.countryId = country;
     }
 
 
@@ -83,6 +87,13 @@ public class Corredor {
 
     public void setHistorialCorredor(List<HistorialEquipo> historialCorredor) { this.historialCorredor = historialCorredor; }
 
+    public Pais getCountry() {
+        return country;
+    }
+
+    public void setCountry(Pais pais) {
+        this.country = pais;
+    }
 
     @Override
     public String toString() {
@@ -91,7 +102,7 @@ public class Corredor {
                 ", name='" + name + '\'' +
                 ", lastNames='" + lastNames + '\'' +
                 ", birthDate=" + birthDate +
-                ", country=" + country +
+                ", country=" + countryId +
                 '}';
     }
 }
