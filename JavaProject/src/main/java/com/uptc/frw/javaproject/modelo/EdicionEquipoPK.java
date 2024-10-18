@@ -1,19 +1,13 @@
-package com.uptc.frw.javaproject.modelo.key;
-
-import com.uptc.frw.javaproject.modelo.Edicion;
-import com.uptc.frw.javaproject.modelo.Equipo;
-import com.uptc.frw.javaproject.modelo.Patrocinador;
+package com.uptc.frw.javaproject.modelo;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-public class EdicionEquipoKey implements Serializable {
+public class EdicionEquipoPK implements Serializable {
 
     private Patrocinador patrocinador;
     private Equipo equipo;
     private Edicion edicion;
-
-    public EdicionEquipoKey() {
-    }
 
     public Patrocinador getPatrocinador() {
         return patrocinador;
@@ -37,5 +31,14 @@ public class EdicionEquipoKey implements Serializable {
 
     public void setEdicion(Edicion edicion) {
         this.edicion = edicion;
+    }
+
+    @Override
+    public String toString() {
+        return "EdicionEquipoPK{" +
+                "patrocinador=" + patrocinador +
+                ", equipo=" + equipo +
+                ", edicion=" + edicion +
+                '}';
     }
 }

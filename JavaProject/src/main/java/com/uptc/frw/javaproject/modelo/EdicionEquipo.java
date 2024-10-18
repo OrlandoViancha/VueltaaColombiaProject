@@ -1,26 +1,36 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "HISTORIAL_EDICION_EQUIPO")
-@IdClass(EdicionEquipo.class)
+@IdClass(EdicionEquipoPK.class)
 public class EdicionEquipo {
+
 
     @Column(name = "ID_EQUIPO", insertable = false, updatable = false)
     private long idEquipo;
+
     @Column(name = "ID_EDICION" , insertable = false, updatable = false)
     private long idEdicion;
+
     @Column(name = "ID_PATROCINADOR", insertable = false, updatable = false)
     private long idPatrocinador;
+
+    @JsonIgnore
     @Id
     @ManyToOne
     @JoinColumn(name = "ID_PATROCINADOR")
     private Patrocinador patrocinador;
+
+    @JsonIgnore
     @Id
     @ManyToOne
     @JoinColumn(name = "ID_EQUIPO")
     private Equipo equipo;
+
+    @JsonIgnore
     @Id
     @ManyToOne
     @JoinColumn(name = "ID_EDICION")
@@ -45,13 +55,21 @@ public class EdicionEquipo {
         this.idEdicion = idEdicion;
     }
 
-    public long getIdPatrocinador() { return idPatrocinador; }
+    public long getIdPatrocinador() {
+        return idPatrocinador;
+    }
 
-    public void setIdPatrocinador(long idPatrocinador) { this.idPatrocinador = idPatrocinador; }
+    public void setIdPatrocinador(long idPatrocinador) {
+        this.idPatrocinador = idPatrocinador;
+    }
 
-    public Patrocinador getPatrocinador() { return patrocinador; }
+    public Patrocinador getPatrocinador() {
+        return patrocinador;
+    }
 
-    public void setPatrocinador(Patrocinador patrocinador) { this.patrocinador = patrocinador; }
+    public void setPatrocinador(Patrocinador patrocinador) {
+        this.patrocinador = patrocinador;
+    }
 
     public Equipo getEquipo() {
         return equipo;
@@ -74,6 +92,7 @@ public class EdicionEquipo {
         return "EdicionEquipo{" +
                 "idEquipo=" + idEquipo +
                 ", idEdicion=" + idEdicion +
+                ", idPatrocinador=" + idPatrocinador +
                 '}';
     }
 }
