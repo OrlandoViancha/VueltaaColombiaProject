@@ -45,6 +45,22 @@ public class Equipo {
 
     public void setFechaFundacion(Date fechaFundacion) { this.fechaFundacion = fechaFundacion; }
 
+    public List<HistorialEquipo> getHistorialEquipo() {
+        return historialEquipo;
+    }
+
+    public void setHistorialEquipo(List<HistorialEquipo> historialEquipo) {
+        this.historialEquipo = historialEquipo;
+    }
+
+    public List<EdicionEquipo> getEdicionEquipo() {
+        return edicionEquipo;
+    }
+
+    public void setEdicionEquipo(List<EdicionEquipo> edicionEquipo) {
+        this.edicionEquipo = edicionEquipo;
+    }
+
     @Override
     public String toString() {
         return "Equipo{" +

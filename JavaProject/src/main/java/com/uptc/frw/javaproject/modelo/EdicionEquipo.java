@@ -4,25 +4,28 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "HISTORIAL_EDICION_EQUIPO")
+@IdClass(EdicionEquipo.class)
 public class EdicionEquipo {
 
-    @Id
-    @Column(name = "ID_EQUIPO")
+    @Column(name = "ID_EQUIPO", insertable = false, updatable = false)
     private long idEquipo;
-    @Id
-    @Column(name = "ID_EDICION")
+    @Column(name = "ID_EDICION" , insertable = false, updatable = false)
     private long idEdicion;
-    @Id
-    @Column(name = "ID_PATROCINADOR",insertable = false, updatable = false)
+    @Column(name = "ID_PATROCINADOR", insertable = false, updatable = false)
     private long idPatrocinador;
-
+    @Id
     @ManyToOne
     @JoinColumn(name = "ID_PATROCINADOR")
     private Patrocinador patrocinador;
-
+    @Id
     @ManyToOne
     @JoinColumn(name = "ID_EQUIPO")
     private Equipo equipo;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "ID_EDICION")
+    private Edicion edicion;
+
     public EdicionEquipo() {
     }
 
@@ -49,6 +52,22 @@ public class EdicionEquipo {
     public Patrocinador getPatrocinador() { return patrocinador; }
 
     public void setPatrocinador(Patrocinador patrocinador) { this.patrocinador = patrocinador; }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    public Edicion getEdicion() {
+        return edicion;
+    }
+
+    public void setEdicion(Edicion edicion) {
+        this.edicion = edicion;
+    }
 
     @Override
     public String toString() {

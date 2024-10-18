@@ -1,5 +1,6 @@
 package com.uptc.frw.javaproject.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,7 +19,7 @@ public class Corredor {
     private String lastNames;
     @Column(name = "FECHA_NACIMIENTO_CORREDOR")
     private Date birthDate;
-    @Column(name = "ID_PAIS")
+    @Column(name = "ID_PAIS", insertable = false, updatable = false)
     private long country;
 
     @OneToMany(mappedBy = "corredor")
@@ -26,6 +27,11 @@ public class Corredor {
 
     @OneToMany(mappedBy = "corredor")
     private List<HistorialEquipo> historialCorredor;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "ID_PAIS")
+    private Pais pais;
 
     public Corredor() {
     }
@@ -83,6 +89,13 @@ public class Corredor {
 
     public void setHistorialCorredor(List<HistorialEquipo> historialCorredor) { this.historialCorredor = historialCorredor; }
 
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
 
     @Override
     public String toString() {
