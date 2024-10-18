@@ -32,7 +32,7 @@ public class EdicionControlador {
 
     @PostMapping
     public Edicion crearEdicion(@RequestBody Edicion edicion){
-        operacionLogServicio.registrarLog("edicion", "post", "Crear la edicion: " + edicion.getId());
+        operacionLogServicio.registrarLog("edicion", "post", "Crear la edicion: " + edicion);
         return edicionServicio.guardar(edicion);
     }
 

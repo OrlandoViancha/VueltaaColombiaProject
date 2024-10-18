@@ -32,7 +32,7 @@ public class PodioControlador {
 
     @PostMapping
     public Podio crearPodio(@RequestBody Podio podio) {
-        operacionLogServicio.registrarLog("podio", "post", "Crear podio: " + podio.getId());
+        operacionLogServicio.registrarLog("podio", "post", "Crear podio: " + podio);
         return podioServicio.guardar(podio);
     }
 

@@ -32,7 +32,7 @@ public class EtapaControlador {
 
     @PostMapping
     public Etapa añadirEtapa(@RequestBody Etapa etapa){
-        operacionLogServicio.registrarLog("etapa", "post", "Crear etapa: " + etapa.getId());
+        operacionLogServicio.registrarLog("etapa", "post", "Crear etapa: " + etapa);
         return etapaServicio.guardar(etapa);
     }
 
