@@ -27,21 +27,25 @@ public class PatrocinadorControlador {
 
     @GetMapping("/busarPorId/{id}")
     public Patrocinador buscarPorId(@PathVariable long id){
+        operacionLogServicio.registrarLog("patrocinador","get","Busca un patrocinador con el id " +id);
         return patrocinadorServicio.buscarPorId(id);
     }
 
     @PostMapping("/insertar")
     public Patrocinador insertarPatrocinador(@RequestBody Patrocinador patrocinador){
+        operacionLogServicio.registrarLog("patrocinador","post","Inserta un patrocinador con id"+ patrocinador.getId());
         return patrocinadorServicio.InsertarPatrocinador(patrocinador);
     }
 
     @DeleteMapping("/eliminar/{id}")
     public void eliminarPatrocinador(@PathVariable long id){
+        operacionLogServicio.registrarLog("patrocinador","delete","Elimina un patrocinador con id" + id);
         patrocinadorServicio.eliminarPatrocinador(id);
     }
 
     @PutMapping("/actualizar/{id}")
     public Patrocinador actualizarPatrocinador(@RequestBody Patrocinador patrocinador,@PathVariable long id){
+        operacionLogServicio.registrarLog("patrocinador","put","Actualiza un patrocinador con el id " +id);
         return patrocinadorServicio.actualizarPatrocinador(id,patrocinador);
     }
 
